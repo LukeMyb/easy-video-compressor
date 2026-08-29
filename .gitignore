@@ -12,5 +12,5 @@ Thumbs.db
 # VS Code
 .vscode/
 
-downloads/
-scripts/
+input/
+output/

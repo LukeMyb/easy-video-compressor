@@ -44,7 +44,7 @@ def compress_video(input_path):
     # outputフォルダへの出力パス生成
     basename = os.path.basename(input_path)
     filename, ext = os.path.splitext(basename)
-    output_path = os.path.join(OUTPUT_DIR, f"{filename}_discord.mp4")
+    output_path = os.path.join(OUTPUT_DIR, f"{filename}_compressed.mp4")
 
     print(f"動画の長さ: {duration:.2f}秒")
     print(f"目標ビデオビットレート: {target_video_bitrate_kbps} kbps")

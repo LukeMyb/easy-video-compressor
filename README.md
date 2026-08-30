@@ -1,4 +1,4 @@
-# Discord Video Compressor
+# Easy Video Compressor
 
 Discordにアップロードするために、動画ファイルのサイズを自動的に10MB以下（目標9.0MB）に圧縮するシンプルなPythonスクリプトです。
 
@@ -12,7 +12,7 @@ Discordにアップロードするために、動画ファイルのサイズを�
 ## ディレクトリ構成
 
 ```text
-compress-for-discord/
+easy-video-compressor/
 ├── bin/          # ffmpeg.exe, ffprobe.exe を配置するフォルダ
 ├── input/        # 圧縮したい元の動画ファイルを入れるフォルダ
 ├── output/       # 圧縮された動画ファイルが出力されるフォルダ
@@ -24,7 +24,7 @@ compress-for-discord/
 
 1. `input` フォルダに圧縮したい動画ファイル（`.mp4`, `.avi`, `.mkv`, `.mov`, `.wmv`など）を入れます。
 2. `run.bat` をダブルクリックして実行します。
-3. スクリプトが実行され、`output` フォルダ内に `元のファイル名_discord.mp4` という名前で圧縮された動画が出力されます。
+3. スクリプトが実行され、`output` フォルダ内に `元のファイル名_compressed.mp4` という名前で圧縮された動画が出力されます。
 
 ## 仕様
 - 2パスエンコード処理で画質をできるだけ保ちながら圧縮します。

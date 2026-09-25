@@ -111,4 +111,23 @@ def process_all_videos():
     print("全ての処理が完了しました。")
 
 if __name__ == "__main__":
-    process_all_videos()
+    if len(sys.argv) > 1:
+        # コマンドライン引数でファイルパスが渡された場合
+        target_path = sys.argv[1].strip('"\'')
+        if os.path.exists(target_path):
+            valid_extensions = ('.mp4', '.avi', '.mkv', '.mov', '.wmv')
+            if not target_path.lower().endswith(valid_extensions):
+                print(f"エラー: 指定されたファイルは動画ファイルではありません。対象を正しくコピーしてください。({target_path})")
+            else:
+                if not os.path.exists(OUTPUT_DIR):
+                    os.makedirs(OUTPUT_DIR)
+                print("============================================================")
+                print(f"処理中: {target_path}")
+                compress_video(target_path)
+                print("============================================================")
+                print("処理が完了しました。")
+        else:
+            print(f"エラー: 指定されたファイルが見つかりません。({target_path})")
+    else:
+        # 引数がない場合はinputフォルダを一括処理
+        process_all_videos()

@@ -26,7 +26,7 @@ def get_video_duration(input_path):
         print("エラー: 動画の長さを取得できませんでした。ffprobeが正しくインストールされているか確認してください。")
         sys.exit(1)
 
-def compress_video(input_path):
+def compress_video(input_path, output_dir=OUTPUT_DIR):
     # 安全マージンを取って9.0MBを目標サイズに設定
     target_size_mb = 9.0
     audio_bitrate_kbps = 128
@@ -41,10 +41,10 @@ def compress_video(input_path):
         print(f"エラー: 動画が長すぎるため、10MB以下に圧縮できません。({input_path})") # ★変更
         return
 
-    # outputフォルダへの出力パス生成
+    # 指定されたoutput_dirへの出力パス生成
     basename = os.path.basename(input_path)
     filename, ext = os.path.splitext(basename)
-    output_path = os.path.join(OUTPUT_DIR, f"{filename}_compressed.mp4")
+    output_path = os.path.join(output_dir, f"{filename}_compressed.mp4")
 
     print(f"動画の長さ: {duration:.2f}秒")
     print(f"目標ビデオビットレート: {target_video_bitrate_kbps} kbps")
@@ -119,13 +119,12 @@ if __name__ == "__main__":
             if not target_path.lower().endswith(valid_extensions):
                 print(f"エラー: 指定されたファイルは動画ファイルではありません。対象を正しくコピーしてください。({target_path})")
             else:
-                if not os.path.exists(OUTPUT_DIR):
-                    os.makedirs(OUTPUT_DIR)
+                target_dir = os.path.dirname(target_path)
                 print("============================================================")
                 print(f"処理中: {target_path}")
-                compress_video(target_path)
+                compress_video(target_path, output_dir=target_dir)
                 print("============================================================")
-                print("処理が完了しました。")
+                print(f"処理が完了しました。出力先: {target_dir}")
         else:
             print(f"エラー: 指定されたファイルが見つかりません。({target_path})")
     else:

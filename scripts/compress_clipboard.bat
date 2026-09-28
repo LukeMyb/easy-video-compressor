@@ -1,5 +1,5 @@
 @echo off
-cd /d "%~dp0"
+cd /d "%~dp0.."
 echo ============================================================
 echo Starting Discord video compression from clipboard path...
 echo ============================================================
